@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.bytedeco.opencv.opencv_core.*;
@@ -16,18 +17,43 @@ import static org.bytedeco.opencv.global.opencv_imgproc.*;
 import static org.bytedeco.opencv.global.opencv_imgcodecs.*;
 
 public class Histogram {
-	BufferedImage screenShotImage;    //화면 캡처
 	java.awt.Robot robot;
-	public Histogram() throws Exception{
+	private int x, y, width, height;
+
+	private static Histogram histogram;
+
+	static {
+		try {
+			histogram = new Histogram();
+		} catch (AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private Histogram() throws AWTException {
 		robot = new Robot();
-		screenShotImage = robot.createScreenCapture(new Rectangle(839, 982,40, 41)); //화면캡쳐
+	}
+
+	public static Histogram getInstance(){
+		return histogram;
+	}
+
+	public void adjustPosition(int x, int y, int width, int height){
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+
+	public void capture() throws IOException {
+		BufferedImage screenShotImage = robot.createScreenCapture(new Rectangle(x, y,width, height)); //화면캡쳐
 		//인터페이스 26전용
-		ImageIO.write(screenShotImage, "png",new File("img/screen.png"));  //캡쳐한 화면내보내기
+		ImageIO.write(screenShotImage, "png", new File("capture/screen.png"));  //캡쳐한 화면내보내기
 	}
 
 	public boolean findImage(String filename) {
 
-		String baseFilename = "img/screen.png";
+		String baseFilename = "capture/screen.png";
 
 		String contrastFilename = filename;
 

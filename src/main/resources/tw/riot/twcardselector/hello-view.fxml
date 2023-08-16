@@ -2,10 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="251.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tw.riot.twcardselector.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="369.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tw.riot.twcardselector.HelloController">
     <children>
         <Label layoutX="25.0" layoutY="14.0" text="Card Picker" />
         <Button fx:id="on_off" layoutX="101.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnHandle" text="켜기" />
@@ -13,6 +16,13 @@
             <tooltip>
                 <Tooltip text="W : 골드 \\ E : 블루 \\ T : 레드" />
             </tooltip></Label>
-        <Button fx:id="popOpen" layoutX="25.0" layoutY="43.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="210.0" text="피   드   백" onAction="#popHandle" />
+        <Button fx:id="popOpen" layoutX="25.0" layoutY="43.0" mnemonicParsing="false" onAction="#popHandle" prefHeight="23.0" prefWidth="210.0" text="피   드   백" />
+      <TextField layoutX="21.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="X" fx:id="xo" />
+      <TextField fx:id="yo" layoutX="61.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="Y" />
+      <TextField fx:id="width" layoutX="107.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="W" />
+      <TextField fx:id="height" layoutX="151.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="H" />
+      <Button fx:id="posApplyBtn" layoutX="195.0" layoutY="81.0" mnemonicParsing="false" onAction="#posBtnHandle" text="적용" />
+      <ImageView fx:id="captureView" fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
     </children>
 </AnchorPane>

@@ -6,9 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Popup;
 
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,6 +23,12 @@ public class HelloController implements Initializable {
 
     @FXML private Button on_off;
     @FXML private Button popOpen;
+    @FXML private TextField xo;
+    @FXML private TextField yo;
+    @FXML private TextField width;
+    @FXML private TextField height;
+    @FXML private Button posApplyBtn;
+    @FXML private ImageView captureView;
     public KeyboardHook kh;
     private Popup popup;
 
@@ -29,6 +42,38 @@ public class HelloController implements Initializable {
             e.printStackTrace();
         }
         kh=new KeyboardHook();
+        xo.setText("839");
+        yo.setText("982");
+        width.setText("40");
+        height.setText("41");
+
+
+/*        BufferedImage i = null;
+        byte[] buffer = ((DataBufferByte)(i).getRaster().getDataBuffer()).getData();
+        Image io = new Image(new ByteArrayInputStream(buffer));*/
+
+        try {
+            captureView.setImage(new Image(new FileInputStream("capture/screen.png")));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void captureCallback(){
+/*        BufferedImage i = null;
+        byte[] buffer = ((DataBufferByte)(i).getRaster().getDataBuffer()).getData();
+        Image io = new Image(new ByteArrayInputStream(buffer));*/
+
+    }
+
+    public void posBtnHandle(ActionEvent event){
+        int numX = Integer.parseInt(xo.getText());
+        int numY = Integer.parseInt(yo.getText());
+        int numWidth = Integer.parseInt(width.getText());
+        int numHeight = Integer.parseInt(height.getText());
+        if(numX > 0 && numY > 0 && numWidth > 0 && numHeight > 0){
+            Histogram.getInstance().adjustPosition(numX, numY, numWidth, numHeight);
+        }
     }
 
     public void popHandle(ActionEvent event) {

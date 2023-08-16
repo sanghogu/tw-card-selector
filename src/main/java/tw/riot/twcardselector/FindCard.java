@@ -5,7 +5,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.robot.Robot;
 
 public class FindCard extends Thread{
-	private Histogram h;
 	private Robot rt;
 
 	private static FindCard findCard = new FindCard();
@@ -59,7 +58,6 @@ public class FindCard extends Thread{
 			try {
 				if(System.currentTimeMillis()-startTime>2000) {  //2초동안 못찾으면 스레드 종료함
 					wClick();
-					h=null;
 					try {
 						Thread.sleep(100);	//키가눌린후 약간의 딜레이후에 후킹 w,e,t 감지 true
 					} catch (InterruptedException e) {
@@ -70,11 +68,10 @@ public class FindCard extends Thread{
 					KeyboardHook.check=true;  //다시 키 활성화
 					break;       //
 				}
-				h=new Histogram(); //화면캡쳐후 내보냄
-			}catch(Exception e) { e.printStackTrace(); h=null; continue;}
-			if(h.findImage(this.cardType.fileNm)) {
+				Histogram.getInstance().capture();
+			}catch(Exception e) { e.printStackTrace(); continue;}
+			if(Histogram.getInstance().findImage(this.cardType.fileNm)) {
 				wClick();
-				h=null;
 				try {
 					Thread.sleep(100);	//키가눌린후 약간의 딜레이후에 후킹 w,e,t 감지 true
 				} catch (InterruptedException e) {
@@ -86,7 +83,6 @@ public class FindCard extends Thread{
 				break;       //찾으면 현재 쓰레드 종료함
 			} else {
 				try {
-					h=null;
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
