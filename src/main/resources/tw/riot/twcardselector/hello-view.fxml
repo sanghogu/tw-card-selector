@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="251.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tw.riot.twcardselector.HelloController">
+    <children>
+        <Label layoutX="25.0" layoutY="14.0" text="Card Picker" />
+        <Button fx:id="on_off" layoutX="101.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnHandle" text="켜기" />
+        <Label ellipsisString="" layoutX="165.0" layoutY="14.0" text="카드 선택방식" wrapText="true">
+            <tooltip>
+                <Tooltip text="W : 골드 \\ E : 블루 \\ T : 레드" />
+            </tooltip></Label>
+        <Button fx:id="popOpen" layoutX="25.0" layoutY="43.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="210.0" text="피   드   백" onAction="#popHandle" />
+    </children>
+</AnchorPane>
