@@ -4,11 +4,12 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.robot.Robot;
 
-public class FindCard extends Thread{
-	private Robot rt;
+public class FindCard extends Thread {
 
-	private static FindCard findCard = new FindCard();
+	private static final FindCard findCard = new FindCard();
 	private CardType cardType;
+
+	private long findStartTime = 0;
 
 	private enum CardType {
 		YELLOW(false, "img/yellow.png"),
@@ -25,6 +26,7 @@ public class FindCard extends Thread{
 
 
 	private FindCard() {
+		this.start();
 	}
 
 	public static FindCard getInstance() {
@@ -33,68 +35,71 @@ public class FindCard extends Thread{
 
 	public void findYellow(){
 		cardType = CardType.YELLOW;
-		Platform.runLater(this);
+		findStartTime=System.currentTimeMillis();
 	}
 	public void findBlue(){
 		cardType = CardType.BLUE;
-		Platform.runLater(this);
+		findStartTime=System.currentTimeMillis();
 	}
 	public void findRed(){
 		cardType = CardType.RED;
-		Platform.runLater(this);
+		findStartTime=System.currentTimeMillis();
 	}
 
 	@Override
 	public void run() {
-		//fx robot 생성은 platform runlater 내에서만 가능
-		if(rt == null) rt = new Robot();
 
-		if(this.cardType.keypress) {
-			wClick();
-		}
-
-		long startTime=System.currentTimeMillis();
 		while(true) {
-			try {
-				if(System.currentTimeMillis()-startTime>2000) {  //2초동안 못찾으면 스레드 종료함
+			if(this.cardType != null) {
+				if(this.cardType.keypress) {
+					wClick();
+				}
+				try {
+					if(System.currentTimeMillis()-this.findStartTime>2000) {  //2초동안 못찾으면 스레드 종료함
+						wClick();
+						try {
+							Thread.sleep(100);	//키가눌린후 약간의 딜레이후에 후킹 w,e,t 감지 true
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+
+						KeyboardHook.check=true;  //다시 키 활성화
+						this.cardType = null;
+						continue;
+					}
+					Histogram.getInstance(null).capture();
+				}catch(Exception e) { e.printStackTrace(); continue;}
+				if(Histogram.getInstance(null).findImage(this.cardType.fileNm)) {
 					wClick();
 					try {
 						Thread.sleep(100);	//키가눌린후 약간의 딜레이후에 후킹 w,e,t 감지 true
 					} catch (InterruptedException e) {
 						e.printStackTrace();
-						break;       //
 					}
-					
+
 					KeyboardHook.check=true;  //다시 키 활성화
-					break;       //
-				}
-				Histogram.getInstance().capture();
-			}catch(Exception e) { e.printStackTrace(); continue;}
-			if(Histogram.getInstance().findImage(this.cardType.fileNm)) {
-				wClick();
-				try {
-					Thread.sleep(100);	//키가눌린후 약간의 딜레이후에 후킹 w,e,t 감지 true
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-					break;
-				}
-				
-				KeyboardHook.check=true;  //다시 키 활성화
-				break;       //찾으면 현재 쓰레드 종료함
-			} else {
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-					break;
+					this.cardType = null;       //찾으면 현재 쓰레드 종료함
+					continue;
+				} else {
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						KeyboardHook.check=true;  //다시 키 활성화
+						this.cardType = null;       //찾으면 현재 쓰레드 종료함
+						continue;
+					}
 				}
 			}
 		} //while
 	} //run
 
 	private void wClick(){
-		rt.keyPress(KeyCode.W);
-		rt.keyRelease(KeyCode.W);
+		Platform.runLater(()->{
+			Robot rt = new Robot();
+			rt.keyPress(KeyCode.W);
+			rt.keyRelease(KeyCode.W);
+		});
 	}
 
 }

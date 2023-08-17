@@ -47,10 +47,7 @@ public class HelloController implements Initializable {
         width.setText("40");
         height.setText("41");
 
-
-/*        BufferedImage i = null;
-        byte[] buffer = ((DataBufferByte)(i).getRaster().getDataBuffer()).getData();
-        Image io = new Image(new ByteArrayInputStream(buffer));*/
+        Histogram.getInstance(captureView);
 
         try {
             captureView.setImage(new Image(new FileInputStream("capture/screen.png")));
@@ -60,9 +57,9 @@ public class HelloController implements Initializable {
     }
 
     public void captureCallback(){
-/*        BufferedImage i = null;
+        BufferedImage i = null;
         byte[] buffer = ((DataBufferByte)(i).getRaster().getDataBuffer()).getData();
-        Image io = new Image(new ByteArrayInputStream(buffer));*/
+        Image io = new Image(new ByteArrayInputStream(buffer));
 
     }
 
@@ -72,7 +69,7 @@ public class HelloController implements Initializable {
         int numWidth = Integer.parseInt(width.getText());
         int numHeight = Integer.parseInt(height.getText());
         if(numX > 0 && numY > 0 && numWidth > 0 && numHeight > 0){
-            Histogram.getInstance().adjustPosition(numX, numY, numWidth, numHeight);
+            Histogram.getInstance(null).adjustPosition(numX, numY, numWidth, numHeight);
         }
     }
 

@@ -1,15 +1,24 @@
 package tw.riot.twcardselector;
 
+import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.WritableImage;
+import javafx.scene.image.*;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.image.DataBufferByte;
+import java.io.*;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javafx.scene.image.Image;
+import javafx.scene.robot.Robot;
+import org.bytedeco.javacpp.tools.Logger;
 import org.bytedeco.opencv.opencv_core.*;
 import org.bytedeco.opencv.opencv_imgproc.*;
 import static org.bytedeco.opencv.global.opencv_core.*;
@@ -17,24 +26,24 @@ import static org.bytedeco.opencv.global.opencv_imgproc.*;
 import static org.bytedeco.opencv.global.opencv_imgcodecs.*;
 
 public class Histogram {
-	java.awt.Robot robot;
+
+	Map<String, CvHistogram> cardCache = new HashMap <>();
+
+	static Logger logger = Logger.create(Histogram.class);
 	private int x, y, width, height;
 
 	private static Histogram histogram;
 
-	static {
-		try {
-			histogram = new Histogram();
-		} catch (AWTException e) {
-			throw new RuntimeException(e);
+	private ImageView captureView;
+
+	private Histogram(ImageView captureView) {
+		this.captureView = captureView;
+	}
+
+	public static Histogram getInstance(ImageView captureView){
+		synchronized (Histogram.class) {
+			if(histogram == null) histogram = new Histogram(captureView);
 		}
-	}
-
-	private Histogram() throws AWTException {
-		robot = new Robot();
-	}
-
-	public static Histogram getInstance(){
 		return histogram;
 	}
 
@@ -46,45 +55,50 @@ public class Histogram {
 	}
 
 	public void capture() throws IOException {
-		BufferedImage screenShotImage = robot.createScreenCapture(new Rectangle(x, y,width, height)); //화면캡쳐
-		//인터페이스 26전용
-		ImageIO.write(screenShotImage, "png", new File("capture/screen.png"));  //캡쳐한 화면내보내기
+
+		File captureFile = new File("capture/screen.png");
+
+		Platform.runLater(()->{
+			WritableImage writableImage = new Robot().getScreenCapture(null, x, y, width, height);
+			BufferedImage screenShotImage = SwingFXUtils.fromFXImage(writableImage, null);
+
+			try {
+				ImageIO.write(screenShotImage, "png", captureFile);  //캡쳐한 화면내보내기
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+			captureView.setImage(writableImage);
+		});
 	}
 
 	public boolean findImage(String filename) {
 
-		String baseFilename = "capture/screen.png";
+		String captureFileName = "capture/screen.png";
+		CvHistogram hist1 = null;
+		if(!cardCache.containsKey(filename)) {
+			hist1 = getHueHistogram(cvLoadImage(filename));
+		} else hist1 = cardCache.get(filename);
 
-		String contrastFilename = filename;
 
-		IplImage baseImage = cvLoadImage(baseFilename);
 
-		CvHistogram hist= getHueHistogram(baseImage);
+		IplImage captureImage = cvLoadImage(captureFileName);
+		CvHistogram hist = getHueHistogram(captureImage);
 
-		IplImage contrastImage = cvLoadImage(contrastFilename);
-
-		CvHistogram hist1=getHueHistogram(contrastImage);
+		//CV_COMP_INTERSECT == 일치할수록 갚이 높음, 컴퓨터마다 색상값이 다르므로 완벽일치 불일치는 보지않으며 수치로 지정함
 		double matchValue=cvCompareHist(hist, hist1, CV_COMP_INTERSECT );
 
-		System.out.println(matchValue);
-		if(matchValue>0.8)
-			return true;
-		else {
-			return false;
-		}
+		logger.info(String.valueOf(matchValue));
+		return matchValue > 0.8;
 	}
 
 	private static CvHistogram getHueHistogram(IplImage image){
 
 		if(image==null || image.nChannels()<1) new Exception("Error!");
 
-
-
 		IplImage greyImage= cvCreateImage(image.cvSize(), image.depth(), 1);
 
 		cvCvtColor(image, greyImage, CV_RGB2GRAY);
-
-
 
 //bins and value-range
 
@@ -128,9 +142,8 @@ public class Histogram {
 
 		cvGetMinMaxHistValue(hist, minMax, minMax, sizes, sizes);
 
-		System.out.println("Min="+minMax[0]); //Less than 0.01
-
-		System.out.println("Max="+minMax[1]); //255
+		logger.info("Min="+minMax[0]);
+		logger.info("Max="+minMax[1]);
 
 		return hist;
 

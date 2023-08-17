@@ -10,7 +10,6 @@ import java.awt.*;
 public class KeyboardHook{
 	public static boolean check=false;   // w,e,t감지가 false은 안켜져있는상태
 	public static boolean enterC=false; //false 은 엔터가안눌린상태
-	private Robot rt;
 	
 	private GlobalKeyListener gk;
 	private KeyAdapter ka;
@@ -56,10 +55,8 @@ public class KeyboardHook{
 	}
 	
 	public void setCheck(boolean check) {
-		this.check=check;
-		if(!check && FindCard.getInstance().isAlive()) {
-			FindCard.getInstance().interrupt();
-		} else if(check) {
+		KeyboardHook.check =check;
+		if(check) {
 			enterC=false;        //엔터는 안누른상태로 바꿈
 		}
 	}
