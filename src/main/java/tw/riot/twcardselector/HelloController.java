@@ -48,12 +48,6 @@ public class HelloController implements Initializable {
         height.setText("41");
 
         Histogram.getInstance(captureView);
-
-        try {
-            captureView.setImage(new Image(new FileInputStream("capture/screen.png")));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void posBtnHandle(ActionEvent event){

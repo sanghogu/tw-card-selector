@@ -1,26 +1,31 @@
 package tw.riot.twcardselector;
 
-import de.ksquared.system.keyboard.GlobalKeyListener;
-import de.ksquared.system.keyboard.KeyAdapter;
-import de.ksquared.system.keyboard.KeyEvent;
-import javafx.application.Platform;
+import lc.kra.system.keyboard.GlobalKeyboardHook;
+import lc.kra.system.keyboard.event.GlobalKeyAdapter;
+import lc.kra.system.keyboard.event.GlobalKeyEvent;
 
 import java.awt.*;
+import java.util.Map;
 
 public class KeyboardHook{
 	public static boolean check=false;   // w,e,t감지가 false은 안켜져있는상태
 	public static boolean enterC=false; //false 은 엔터가안눌린상태
-	
-	private GlobalKeyListener gk;
-	private KeyAdapter ka;
+
 	public KeyboardHook() {
-		gk=new GlobalKeyListener();
-		ka=new KeyAdapter() {
-			@Override public void keyPressed(KeyEvent event) { 
+		GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook(true); // Use false here to switch to hook instead of raw input
+		System.out.println("Global keyboard hook successfully started, press [escape] key to shutdown. Connected keyboards:");
+
+		for (Map.Entry <Long, String> keyboard : GlobalKeyboardHook.listKeyboards().entrySet()) {
+			System.out.format("%d: %s\n", keyboard.getKey(), keyboard.getValue());
+		}
+		keyboardHook.addKeyListener(new GlobalKeyAdapter() {
+
+			@Override
+			public void keyPressed(GlobalKeyEvent event) {
 				System.out.println(event+"키눌림");
 				if(event.getVirtualKeyCode()==13&&check) {
 					if(!enterC) {  //엔터가 최초로 눌려서 채팅창이 열리는시점
-						setCheck(false); // w,e,t 키 감지안함 
+						setCheck(false); // w,e,t 키 감지안함
 						enterC=true;
 					}
 				}else if(event.getVirtualKeyCode()==13) {
@@ -30,27 +35,30 @@ public class KeyboardHook{
 					}
 				}
 			}
-			@Override public void keyReleased(KeyEvent event) {
+
+			@Override
+			public void keyReleased(GlobalKeyEvent event) {
 				System.out.println(event);
-				try {
-					if(check) {
-						if(event.getVirtualKeyCode()==87) {    // W   골드
-							setCheck(false);
-							FindCard.getInstance().findYellow();
-						}else if(event.getVirtualKeyCode()==69) {    // E   블루
-							setCheck(false);
-							FindCard.getInstance().findBlue();
-						}else if(event.getVirtualKeyCode()==84) {    // T   레드
-							setCheck(false);
-							FindCard.getInstance().findRed();
-						}
-					} //if check
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				if(check) {
+					if(event.getVirtualKeyCode()==87) {    // W   골드
+						setCheck(false);
+						new FindCard().findYellow();
+					}else if(event.getVirtualKeyCode()==69) {    // E   블루
+						setCheck(false);
+						new FindCard().findBlue();
+					}else if(event.getVirtualKeyCode()==84) {    // T   레드
+						setCheck(false);
+						new FindCard().findRed();
+					}
+				} //if check
+
 			}
-		};
-		gk.addKeyListener(ka);
+		});
+
+		Runtime.getRuntime().addShutdownHook(new Thread(()->{
+			keyboardHook.shutdownHook();
+			System.out.println("Shutdownhook");
+		}));
 
 	}
 	

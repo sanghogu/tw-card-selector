@@ -16,16 +16,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>cyj</groupId>
-            <artifactId>KeyboardHook</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/KeyboardHook.jar</systemPath>
-        </dependency>
-        <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
             <version>1.5.9</version>
+        </dependency>
+        <dependency>
+            <groupId>lc.kra.system</groupId>
+            <artifactId>system-hook</artifactId>
+            <version>3.8</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>

@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class FindCard extends Thread {
 
-	private static final FindCard findCard = new FindCard();
 	private CardType cardType;
 
 	private long findStartTime = 0;
@@ -27,52 +26,57 @@ public class FindCard extends Thread {
 	}
 
 
-	private FindCard() {
-		this.start();
-	}
-
-	public static FindCard getInstance() {
-		return findCard;
+	public FindCard() {
 	}
 
 	public void findYellow(){
-		cardType = CardType.YELLOW;
-		findStartTime=System.currentTimeMillis();
+		find(CardType.YELLOW);
 	}
 	public void findBlue(){
-		cardType = CardType.BLUE;
-		findStartTime=System.currentTimeMillis();
+		find(CardType.BLUE);
 	}
 	public void findRed(){
-		cardType = CardType.RED;
-		findStartTime=System.currentTimeMillis();
+		find(CardType.RED);
+	}
+
+	private void find(CardType cardType) {
+		System.out.println("FIND"+ cardType);
+		this.cardType = cardType;
+		this.start();
 	}
 
 	@Override
 	public void run() {
 
-		while(true) {
-			if(this.cardType != null) {
-				if(this.cardType.keypress) {
-					wClick();
-				}
+		findStartTime=System.currentTimeMillis();
+		if(this.cardType.keypress) {
+			wClick();
+		}
 
-				if(System.currentTimeMillis()-this.findStartTime>2000) {  //2초동안 못찾으면 스레드 종료함
+		while(true) {
+			System.out.println(Thread.currentThread().getName());
+			long currTimeMillis = System.currentTimeMillis();
+			System.out.println(currTimeMillis - findStartTime);
+			if(currTimeMillis-findStartTime>3000) {  //3초동안 못찾으면 스레드 종료함
+				wClick();
+				break;
+			} else {
+				try {
+					Histogram.getInstance(null).capture();
+				} catch (IOException e) {e.printStackTrace();}
+				if(Histogram.getInstance(null).findImage(this.cardType.fileNm)) {
 					wClick();
-					restore();
+					break;
 				} else {
-					try {
-						Histogram.getInstance(null).capture();
-					} catch (IOException e) {e.printStackTrace();}
-					if(Histogram.getInstance(null).findImage(this.cardType.fileNm)) {
-						wClick();
-						restore();
-					} else {
-						delay(100);
-					}
+					delay(100);
 				}
 			}
+
 		} //while
+
+		delay(100);
+		KeyboardHook.check=true;  //다시 키 활성화
+
 	} //run
 
 	private void delay(long millis){
@@ -81,11 +85,6 @@ public class FindCard extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-	private void restore(){
-		delay(100);
-		KeyboardHook.check=true;  //다시 키 활성화
-		this.cardType = null;       //찾으면 현재 쓰레드 종료함
 	}
 
 	private void wClick(){
