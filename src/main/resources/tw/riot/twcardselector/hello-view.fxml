@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -17,11 +16,11 @@
                 <Tooltip text="W : 골드 \\ E : 블루 \\ T : 레드" />
             </tooltip></Label>
         <Button fx:id="popOpen" layoutX="25.0" layoutY="43.0" mnemonicParsing="false" onAction="#popHandle" prefHeight="23.0" prefWidth="210.0" text="피   드   백" />
-      <TextField layoutX="21.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="X" fx:id="xo" />
-      <TextField fx:id="yo" layoutX="61.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="Y" />
-      <TextField fx:id="width" layoutX="107.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="W" />
-      <TextField fx:id="height" layoutX="151.0" layoutY="81.0" prefHeight="22.0" prefWidth="29.0" text="H" />
-      <Button fx:id="posApplyBtn" layoutX="195.0" layoutY="81.0" mnemonicParsing="false" onAction="#posBtnHandle" text="적용" />
+      <TextField layoutX="21.0" layoutY="81.0" prefHeight="22.0" prefWidth="40.0" promptText="X" fx:id="xo" />
+      <TextField fx:id="yo" layoutX="86.0" layoutY="81.0" prefHeight="22.0" prefWidth="40.0" promptText="Y" />
+      <TextField fx:id="width" layoutX="145.0" layoutY="81.0" prefHeight="22.0" prefWidth="40.0" promptText="W" />
+      <TextField fx:id="height" layoutX="195.0" layoutY="81.0" prefHeight="22.0" prefWidth="40.0" promptText="H" />
+      <Button fx:id="posApplyBtn" layoutX="247.0" layoutY="81.0" mnemonicParsing="false" onAction="#posBtnHandle" text="적용" />
       <ImageView fx:id="captureView" fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
     </children>

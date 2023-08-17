@@ -7,6 +7,7 @@ import javafx.scene.image.*;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.*;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.scene.image.Image;
 import javafx.scene.robot.Robot;
@@ -54,49 +56,48 @@ public class Histogram {
 		this.height = height;
 	}
 
-	public void capture() throws IOException {
+	public void capture() throws IOException, AWTException {
 
 		File captureFile = new File("capture/screen.png");
 
+		java.awt.Robot robot = new java.awt.Robot();
+		BufferedImage screenShotImage = robot.createScreenCapture(new Rectangle(x, y,width, height)); //화면캡쳐
+		ImageIO.write(screenShotImage, "png", captureFile);
+
 		Platform.runLater(()->{
-			WritableImage writableImage = new Robot().getScreenCapture(null, x, y, width, height);
-			BufferedImage screenShotImage = SwingFXUtils.fromFXImage(writableImage, null);
-
-			try {
-				ImageIO.write(screenShotImage, "png", captureFile);  //캡쳐한 화면내보내기
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-
-			captureView.setImage(writableImage);
+			captureView.setImage(SwingFXUtils.toFXImage(screenShotImage, null));
 		});
 	}
 
 	public boolean findImage(String filename) {
 
-		String captureFileName = "capture/screen.png";
-		CvHistogram hist1 = null;
-		if(!cardCache.containsKey(filename)) {
-			hist1 = getHueHistogram(cvLoadImage(filename));
-		} else hist1 = cardCache.get(filename);
+		try {
+			String captureFileName = "capture/screen.png";
+			CvHistogram hist1 = null;
+			if(!cardCache.containsKey(filename)) {
+				hist1 = getHueHistogram(cvLoadImage(filename));
+			} else hist1 = cardCache.get(filename);
 
 
+			IplImage captureImage = cvLoadImage(captureFileName);
+			CvHistogram hist = getHueHistogram(captureImage);
 
-		IplImage captureImage = cvLoadImage(captureFileName);
-		CvHistogram hist = getHueHistogram(captureImage);
+			//CV_COMP_INTERSECT == 일치할수록 갚이 높음, 컴퓨터마다 색상값이 다르므로 완벽일치 불일치는 보지않으며 수치로 지정함
+			double matchValue=cvCompareHist(hist, hist1, CV_COMP_INTERSECT );
 
-		//CV_COMP_INTERSECT == 일치할수록 갚이 높음, 컴퓨터마다 색상값이 다르므로 완벽일치 불일치는 보지않으며 수치로 지정함
-		double matchValue=cvCompareHist(hist, hist1, CV_COMP_INTERSECT );
-
-		logger.info(String.valueOf(matchValue));
-		return matchValue > 0.8;
+			logger.info(String.valueOf(matchValue));
+			return matchValue > 0.8;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	private static CvHistogram getHueHistogram(IplImage image){
 
 		if(image==null || image.nChannels()<1) new Exception("Error!");
 
-		IplImage greyImage= cvCreateImage(image.cvSize(), image.depth(), 1);
+		IplImage greyImage = cvCreateImage(image.cvSize(), image.depth(), 1);
 
 		cvCvtColor(image, greyImage, CV_RGB2GRAY);
 

@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.robot.Robot;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class FindCard extends Thread {
@@ -63,7 +64,9 @@ public class FindCard extends Thread {
 			} else {
 				try {
 					Histogram.getInstance(null).capture();
-				} catch (IOException e) {e.printStackTrace();}
+				} catch (IOException e) {e.printStackTrace();} catch (AWTException e) {
+					throw new RuntimeException(e);
+				}
 				if(Histogram.getInstance(null).findImage(this.cardType.fileNm)) {
 					wClick();
 					break;

@@ -12,7 +12,7 @@ public class KeyboardHook{
 	public static boolean enterC=false; //false 은 엔터가안눌린상태
 
 	public KeyboardHook() {
-		GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook(true); // Use false here to switch to hook instead of raw input
+		GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook(false); // Use false here to switch to hook instead of raw input
 		System.out.println("Global keyboard hook successfully started, press [escape] key to shutdown. Connected keyboards:");
 
 		for (Map.Entry <Long, String> keyboard : GlobalKeyboardHook.listKeyboards().entrySet()) {
