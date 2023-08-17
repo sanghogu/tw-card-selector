@@ -56,13 +56,6 @@ public class HelloController implements Initializable {
         }
     }
 
-    public void captureCallback(){
-        BufferedImage i = null;
-        byte[] buffer = ((DataBufferByte)(i).getRaster().getDataBuffer()).getData();
-        Image io = new Image(new ByteArrayInputStream(buffer));
-
-    }
-
     public void posBtnHandle(ActionEvent event){
         int numX = Integer.parseInt(xo.getText());
         int numY = Integer.parseInt(yo.getText());

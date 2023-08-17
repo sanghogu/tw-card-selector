@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.robot.Robot;
 
+import java.io.IOException;
+
 public class FindCard extends Thread {
 
 	private static final FindCard findCard = new FindCard();
@@ -54,47 +56,40 @@ public class FindCard extends Thread {
 				if(this.cardType.keypress) {
 					wClick();
 				}
-				try {
-					if(System.currentTimeMillis()-this.findStartTime>2000) {  //2초동안 못찾으면 스레드 종료함
-						wClick();
-						try {
-							Thread.sleep(100);	//키가눌린후 약간의 딜레이후에 후킹 w,e,t 감지 true
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
 
-						KeyboardHook.check=true;  //다시 키 활성화
-						this.cardType = null;
-						continue;
-					}
-					Histogram.getInstance(null).capture();
-				}catch(Exception e) { e.printStackTrace(); continue;}
-				if(Histogram.getInstance(null).findImage(this.cardType.fileNm)) {
+				if(System.currentTimeMillis()-this.findStartTime>2000) {  //2초동안 못찾으면 스레드 종료함
 					wClick();
-					try {
-						Thread.sleep(100);	//키가눌린후 약간의 딜레이후에 후킹 w,e,t 감지 true
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-					KeyboardHook.check=true;  //다시 키 활성화
-					this.cardType = null;       //찾으면 현재 쓰레드 종료함
-					continue;
+					restore();
 				} else {
 					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-						KeyboardHook.check=true;  //다시 키 활성화
-						this.cardType = null;       //찾으면 현재 쓰레드 종료함
-						continue;
+						Histogram.getInstance(null).capture();
+					} catch (IOException e) {e.printStackTrace();}
+					if(Histogram.getInstance(null).findImage(this.cardType.fileNm)) {
+						wClick();
+						restore();
+					} else {
+						delay(100);
 					}
 				}
 			}
 		} //while
 	} //run
 
+	private void delay(long millis){
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	private void restore(){
+		delay(100);
+		KeyboardHook.check=true;  //다시 키 활성화
+		this.cardType = null;       //찾으면 현재 쓰레드 종료함
+	}
+
 	private void wClick(){
+		System.out.println("wClick");
 		Platform.runLater(()->{
 			Robot rt = new Robot();
 			rt.keyPress(KeyCode.W);
