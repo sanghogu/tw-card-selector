@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1b231c6-908b-4ace-bf0f-159ddcaf81c9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../java/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../java/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capture/screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/../java/capture/screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../img/blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/../java/img/blue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../img/red.png" beforeDir="false" afterPath="$PROJECT_DIR$/../java/img/red.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../img/yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/../java/img/yellow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/../java/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../java/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/tw/riot/twcardselector/FindCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/tw/riot/twcardselector/FindCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/tw/riot/twcardselector/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/tw/riot/twcardselector/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/tw/riot/twcardselector/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/tw/riot/twcardselector/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/tw/riot/twcardselector/Histogram.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/tw/riot/twcardselector/Histogram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/tw/riot/twcardselector/KeyboardHook.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/tw/riot/twcardselector/KeyboardHook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/tw/riot/twcardselector/PopupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/tw/riot/twcardselector/PopupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/tw/riot/twcardselector/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/java/tw/riot/twcardselector/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/tw/riot/twcardselector/feedback.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/resources/tw/riot/twcardselector/feedback.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/tw/riot/twcardselector/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/src/main/resources/tw/riot/twcardselector/hello-view.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2UHa7jUf1fg4MusZD7OQsPSF2qQ" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "C:/Users/yongj/IdeaProjects/tw-card-selector/golan",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="RunManager" selected="Go Test.go test golan/test">
+    <configuration name="TestFunc in go/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestFunc\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestFunc in golan/test (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golan" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golan/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestFunc\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestFunc in golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golan/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestFunc\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golan" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golan/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gobench golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golan" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golan/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gobench" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.go test golan/test" />
+        <item itemvalue="Go Test.gobench golan/test" />
+        <item itemvalue="Go Test.TestFunc in golan/test (1)" />
+        <item itemvalue="Go Test.TestFunc in golan/test" />
+        <item itemvalue="Go Test.TestFunc in go/test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1b231c6-908b-4ace-bf0f-159ddcaf81c9" name="Changes" comment="" />
+      <created>1668553945550</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668553945550</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
