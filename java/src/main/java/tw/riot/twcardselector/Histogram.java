@@ -72,13 +72,12 @@ public class Histogram {
 	public boolean findImage(String filename) {
 
 		try {
-			String captureFileName = "capture/screen.png";
 			CvHistogram hist1 = null;
 			if(!cardCache.containsKey(filename)) {
 				hist1 = getHueHistogram(cvLoadImage(filename));
 			} else hist1 = cardCache.get(filename);
 
-
+			String captureFileName = "capture/screen.png";
 			IplImage captureImage = cvLoadImage(captureFileName);
 			CvHistogram hist = getHueHistogram(captureImage);
 
@@ -129,7 +128,6 @@ public class Histogram {
 
 		int accumulate = 0;
 
-		IplImage mask = null;
 
 		IplImage[] aux = new IplImage[]{greyImage};
 

@@ -4,47 +4,35 @@ import (
 	"fmt"
 	"gocv.io/x/gocv"
 	"golan/util"
-	"image"
-	"image/png"
-	"os"
 	"path"
 )
 
-func Histogram() {
-	fmt.Println(os.Getwd())
+func HistogramMatching() {
 
-	img := imageLoad(path.Join(util.ROOT_PATH, "img/blue.png"))
+	mat := imageLoad(path.Join(util.ROOT_PATH, "img/blue.png"))
+	matResult := histogram(mat)
 
-	mat, err := gocv.ImageToMatRGB(img)
-	if err != nil {
-		panic(err)
-	}
+	mat2 := imageLoad(path.Join(util.ROOT_PATH, "img/red.png"))
+	mat2Result := histogram(mat2)
 
-	img2 := imageLoad(path.Join(util.ROOT_PATH, "img/red.png"))
-
-	mat2, err := gocv.ImageToMatRGB(img2)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(gocv.CompareHist(mat, mat2, 5))
-
+	fmt.Println(gocv.CompareHist(matResult, mat2Result, gocv.HistCmpIntersect))
 }
 
-func imageLoad(fullPath string) image.Image {
-	file, err := os.Open(fullPath)
+func histogram(source gocv.Mat) gocv.Mat {
 
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
+	channel := []int{1}
+	sizes := []int{256}
+	ranges := []float64{0, 256}
 
-	resultImg, err := png.Decode(file)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("Size")
-	fmt.Println(resultImg.Bounds().Size())
+	resultMat := gocv.NewMat()
 
-	return resultImg
+	gocv.CalcHist([]gocv.Mat{source}, channel, gocv.NewMat(), &resultMat, sizes, ranges, false)
+
+	re := gocv.NewMat()
+	gocv.Normalize(resultMat, &re, 1, 0, gocv.NormL1)
+	return re
+}
+
+func imageLoad(fullPath string) gocv.Mat {
+	return gocv.IMRead(fullPath, 1)
 }

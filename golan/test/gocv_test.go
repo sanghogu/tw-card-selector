@@ -7,5 +7,5 @@ import (
 
 func TestGoCv(t *testing.T) {
 
-	lib.Histogram()
+	lib.HistogramMatching()
 }

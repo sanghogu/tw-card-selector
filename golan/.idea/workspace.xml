@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1b231c6-908b-4ace-bf0f-159ddcaf81c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/img/blue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blue1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/red.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/gocv.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/haarcascade_frontalface_default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/gocv_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/util.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/gocv.go" beforeDir="false" afterPath="$PROJECT_DIR$/lib/gocv.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/gocv_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/gocv_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +71,7 @@
       <recent name="C:\Users\sangh\IdeaProjects\tw-card-selector\golan\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestGoCv in golan/test (3)">
+  <component name="RunManager" selected="Go Test.TestGoCv in golan/test (4)">
     <configuration name="go build golan" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="golan" />
       <working_directory value="$PROJECT_DIR$" />
@@ -121,7 +117,7 @@
       <pattern value="^\QTestGoCv\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGoCv in golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGoCv in golan/test (4)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="golan" />
       <working_directory value="$PROJECT_DIR$/test" />
       <root_directory value="$PROJECT_DIR$" />
@@ -135,11 +131,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestGoCv in golan/test (4)" />
+        <item itemvalue="Go Build.go build golan" />
         <item itemvalue="Go Test.TestGoCv in golan/test (3)" />
         <item itemvalue="Go Test.TestGoCv in golan/test (2)" />
-        <item itemvalue="Go Build.go build golan" />
         <item itemvalue="Go Test.TestGoCv in golan/test (1)" />
-        <item itemvalue="Go Test.TestGoCv in golan/test" />
       </list>
     </recent_temporary>
   </component>
