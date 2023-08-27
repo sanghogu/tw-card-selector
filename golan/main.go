@@ -1,21 +1,18 @@
 package main
 
-/*
-#include <stdio.h>
-void hello() {
-	printf("Hello");
-}
-*/
-
 import (
 	"C"
-	"golan/lib"
+	"github.com/rthornton128/goncurses"
+	"log"
 )
 
 func main() {
 
-	C.hello()
-
-	lib.KeyboardInit()
+	src, err := goncurses.Init()
+	if err != nil {
+		log.Fatal("init:", err)
+	}
+	src.Println("TEST")
+	defer goncurses.End()
 
 }
