@@ -12,7 +12,6 @@ require (
 	github.com/jezek/xgb v1.1.0 // indirect
 	github.com/kbinani/screenshot v0.0.0-20230812210009-b87d31814237 // indirect
 	github.com/lxn/win v0.0.0-20210218163916-a377121e959e // indirect
-	github.com/rthornton128/goncurses v0.0.0-20230211155340-24ae0ddac304 // indirect
 	golang.org/x/sys v0.11.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )

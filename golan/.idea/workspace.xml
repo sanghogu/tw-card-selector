@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1b231c6-908b-4ace-bf0f-159ddcaf81c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/ini_watch.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/live_setting.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/ini_parser_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/ini_watch_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ini_watch.go" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ini_watch.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +31,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
   <component name="ProjectId" id="2UHa7jUf1fg4MusZD7OQsPSF2qQ" />
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
@@ -73,7 +74,7 @@
       <recent name="C:\Users\sangh\IdeaProjects\tw-card-selector\golan\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestIniParser in golan/test">
+  <component name="RunManager" selected="Go Test.TestRegWatch in golan/test">
     <configuration name="go build golan" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="golan" />
       <working_directory value="$PROJECT_DIR$" />
@@ -81,18 +82,6 @@
       <package value="golan" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestGoCv in golan/test (3)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="golan" />
-      <working_directory value="$PROJECT_DIR$/test" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="golan/test" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestGoCv\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestGoCv in golan/test (4)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -119,6 +108,18 @@
       <pattern value="^\QTestIniParser\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestRegWatch in golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golan" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golan/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestRegWatch\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="capture_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="golan" />
       <working_directory value="$PROJECT_DIR$/test" />
@@ -131,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestRegWatch in golan/test" />
         <item itemvalue="Go Test.TestIniParser in golan/test" />
         <item itemvalue="Go Build.go build golan" />
         <item itemvalue="Go Test.capture_test.go" />
         <item itemvalue="Go Test.TestGoCv in golan/test (4)" />
-        <item itemvalue="Go Test.TestGoCv in golan/test (3)" />
       </list>
     </recent_temporary>
   </component>

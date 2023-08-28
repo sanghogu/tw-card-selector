@@ -5,7 +5,8 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"golan/util"
 	"gopkg.in/ini.v1"
-	"path"
+	"log"
+	"path/filepath"
 )
 
 var (
@@ -17,14 +18,13 @@ var (
 
 func RegWatch() {
 
-	fmt.Println(x, y, width, height)
+	readSettingIni()
+
 	watch, err := fsnotify.NewWatcher()
 	if err != nil {
 		panic(err)
 	}
 	defer watch.Close()
-
-	watch.Add(path.Join(util.ROOT_PATH, "live_setting.ini"))
 
 	go func() {
 		for {
@@ -33,17 +33,34 @@ func RegWatch() {
 				if !ok {
 					return
 				}
-				if event.Name == path.Join(util.ROOT_PATH, "live_setting.ini") {
+				log.Println("event:", event)
+				if event.Has(fsnotify.Write) {
+					log.Println("modified file:", event.Name)
+				}
+				if event.Name == filepath.Join(util.ROOT_PATH, "live_setting.ini") {
 					readSettingIni()
 				}
+			case err, ok := <-watch.Errors:
+				if !ok {
+					return
+				}
+				log.Println("error:", err)
 			}
 		}
 	}()
+	err = watch.Add(filepath.Join(util.ROOT_PATH, "live_setting.ini"))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	<-make(chan struct{})
 }
 
 func readSettingIni() {
 
-	file, err := ini.Load(path.Join(util.ROOT_PATH, "live_setting.ini"))
+	fmt.Println("new load setting.ini")
+
+	file, err := ini.Load(filepath.Join(util.ROOT_PATH, "live_setting.ini"))
 	if err != nil {
 		panic(err)
 	}
