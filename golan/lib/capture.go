@@ -1,27 +1,21 @@
 package lib
 
 import (
-	"bytes"
-	"fmt"
 	"github.com/kbinani/screenshot"
-	"golan/util"
-	"os"
-	"path"
+	"image"
 )
-import "image/png"
 
-func Capture() {
+func Capture() image.Image {
 
 	img, err := screenshot.Capture(853, 994, 36, 36)
 	if err != nil {
 		panic(err)
 	}
 
-	buf := new(bytes.Buffer)
-	png.Encode(buf, img)
+	return img
 
-	fmt.Println(buf.Bytes())
-
-	os.WriteFile(path.Join(util.ROOT_PATH, "img", "test.png"), buf.Bytes(), os.ModePerm)
-
+	/*	아래 코드는 파일로 저장하는것 디버그시에만 허용
+		buf := new(bytes.Buffer)
+			png.Encode(buf, img)
+			os.WriteFile(path.Join(util.ROOT_PATH, "img", "test.png"), buf.Bytes(), os.ModePerm)*/
 }
