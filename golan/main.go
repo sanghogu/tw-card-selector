@@ -12,7 +12,7 @@ import (
 
 func main() {
 
-	var isDetectKey bool = false
+	var isDetectKey bool = true
 	var isEnter bool = false
 
 	keyboardChan := make(chan types.KeyboardEvent)
@@ -24,23 +24,37 @@ func main() {
 		for key := range keyboardChan {
 			fmt.Println(key.VKCode)
 			fmt.Println(key.Time)
-			if key.VKCode == types.VK_RETURN {
-				isEnter = !isEnter
-			} else if isDetectKey && !isEnter {
-				if key.VKCode == types.VK_W {
-
-				} else if key.VKCode == types.VK_E {
-
-				} else if key.VKCode == types.VK_T {
-
+			if isDetectKey {
+				if key.VKCode == types.VK_RETURN {
+					isEnter = !isEnter
+				} else if !isEnter {
+					if key.VKCode == types.VK_W {
+						go func() {
+							isDetectKey = false
+							findYellow()
+							isDetectKey = true
+						}()
+					} else if key.VKCode == types.VK_E {
+						go func() {
+							isDetectKey = false
+							findBlue()
+							isDetectKey = true
+						}()
+					} else if key.VKCode == types.VK_T {
+						go func() {
+							isDetectKey = false
+							findRed()
+							isDetectKey = true
+						}()
+					}
 				}
 			}
+
 		}
 
 	}()
 
 	gracefully()
-
 }
 
 func gracefully() {

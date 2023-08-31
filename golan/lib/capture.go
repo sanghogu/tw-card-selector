@@ -1,8 +1,13 @@
 package lib
 
 import (
+	"bytes"
 	"github.com/kbinani/screenshot"
+	"golan/util"
 	"image"
+	"image/png"
+	"os"
+	"path"
 )
 
 func Capture() image.Image {
@@ -12,10 +17,12 @@ func Capture() image.Image {
 		panic(err)
 	}
 
-	return img
-
-	/*	아래 코드는 파일로 저장하는것 디버그시에만 허용
+	//디버그용 캡쳐 위치
+	go func() {
 		buf := new(bytes.Buffer)
-			png.Encode(buf, img)
-			os.WriteFile(path.Join(util.ROOT_PATH, "img", "test.png"), buf.Bytes(), os.ModePerm)*/
+		png.Encode(buf, img)
+		os.WriteFile(path.Join(util.ROOT_PATH, "img", "test.png"), buf.Bytes(), os.ModePerm)
+	}()
+
+	return img
 }

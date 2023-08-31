@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1b231c6-908b-4ace-bf0f-159ddcaf81c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/find_card.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/keybd_event.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/keybd_event_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/find_card.go" beforeDir="false" afterPath="$PROJECT_DIR$/find_card.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/test.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/capture.go" beforeDir="false" afterPath="$PROJECT_DIR$/lib/capture.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/gocv.go" beforeDir="false" afterPath="$PROJECT_DIR$/lib/gocv.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/keyboard.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/keybd_event.go" beforeDir="false" afterPath="$PROJECT_DIR$/lib/keybd_event.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/gocv_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/gocv_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/keyboard_test.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +76,7 @@
       <recent name="C:\Users\sangh\IdeaProjects\tw-card-selector\golan\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestKeyPress in golan/test">
+  <component name="RunManager" selected="Go Test.TestCapture in golan/test">
     <configuration name="go build golan" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="golan" />
       <working_directory value="$PROJECT_DIR$" />
@@ -89,7 +86,7 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="TestIniParser in golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCapture in golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="golan" />
       <working_directory value="$PROJECT_DIR$/test" />
       <root_directory value="$PROJECT_DIR$" />
@@ -98,7 +95,7 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestIniParser\E$" />
+      <pattern value="^\QTestCapture\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestKeyPress in golan/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -137,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestCapture in golan/test" />
+        <item itemvalue="Go Build.go build golan" />
         <item itemvalue="Go Test.TestKeyPress in golan/test" />
         <item itemvalue="Go Test.keybd_event_test.go" />
         <item itemvalue="Go Test.TestRegWatch in golan/test" />
-        <item itemvalue="Go Test.TestIniParser in golan/test" />
-        <item itemvalue="Go Build.go build golan" />
       </list>
     </recent_temporary>
   </component>

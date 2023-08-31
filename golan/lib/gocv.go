@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"fmt"
 	"gocv.io/x/gocv"
 	"golan/util"
 	"image"
@@ -26,7 +27,11 @@ func HistogramMatchingFromImage(img1 image.Image, img2 image.Image) float32 {
 		panic(err)
 	}
 
-	return histogramMatching(mat, mat2)
+	result := histogramMatching(mat, mat2)
+
+	fmt.Println("Histogram Result Value: ", result)
+
+	return result
 }
 
 func histogramMatching(img1 gocv.Mat, img2 gocv.Mat) float32 {

@@ -11,14 +11,14 @@ var (
 )
 
 func Click(code types.VKCode) {
+	down(code)
 	up(code)
-	Down(code)
 }
 
-func up(code types.VKCode) {
+func down(code types.VKCode) {
 	keybdEvent.Call(uintptr(code), uintptr(0), uintptr(0), uintptr(0))
 }
 
-func Down(code types.VKCode) {
+func up(code types.VKCode) {
 	keybdEvent.Call(uintptr(code), uintptr(0), uintptr(0x0002), uintptr(0))
 }
