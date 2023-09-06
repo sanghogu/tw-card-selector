@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/moutend/go-hook/pkg/keyboard"
 	"github.com/moutend/go-hook/pkg/types"
+	"golan/lib"
 	"os"
 	"os/signal"
 	"syscall"
@@ -31,19 +32,19 @@ func main() {
 					if key.VKCode == types.VK_W {
 						go func() {
 							isDetectKey = false
-							findYellow()
+							lib.FindYellow()
 							isDetectKey = true
 						}()
 					} else if key.VKCode == types.VK_E {
 						go func() {
 							isDetectKey = false
-							findBlue()
+							lib.FindBlue()
 							isDetectKey = true
 						}()
 					} else if key.VKCode == types.VK_T {
 						go func() {
 							isDetectKey = false
-							findRed()
+							lib.FindRed()
 							isDetectKey = true
 						}()
 					}
@@ -60,9 +61,9 @@ func main() {
 func gracefully() {
 	exitSignal := make(chan os.Signal, 1)
 	signal.Notify(exitSignal, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
+	<-exitSignal
 
 	keyboard.Uninstall()
 	fmt.Println("Uninstall")
 
-	<-exitSignal
 }

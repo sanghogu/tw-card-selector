@@ -3,19 +3,15 @@ package test
 import (
 	"fmt"
 	"github.com/lxn/win"
-	"syscall"
+	"github.com/moutend/go-hook/pkg/types"
+	"golan/lib"
 	"testing"
 	"unsafe"
 )
 
-var (
-	user32         = syscall.NewLazyDLL("user32.dll")
-	mapVirtualKeyA = user32.NewProc("MapVirtualKeyA")
-)
-
 func TestConvertVkCodeToScanCodeRetDEC(t *testing.T) {
-	ret, _, _ := mapVirtualKeyA.Call(uintptr(0x57), uintptr(0))
-	fmt.Println(uintptr(ret))
+
+	lib.Click(types.VK_W)
 }
 
 func TestKeyPress(t *testing.T) {

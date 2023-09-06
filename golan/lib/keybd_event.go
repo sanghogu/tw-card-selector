@@ -1,9 +1,11 @@
 package lib
 
 import (
+	"fmt"
 	"github.com/lxn/win"
 	"github.com/moutend/go-hook/pkg/types"
 	"syscall"
+	"time"
 	"unsafe"
 )
 
@@ -14,7 +16,8 @@ var (
 
 func convertVkCodeToScanCodeRetDEC(code types.VKCode) int {
 	r1, _, err := mapVirtualKeyA.Call(uintptr(code), uintptr(0))
-	if err != nil {
+	if r1 == 0 {
+		fmt.Println(r1)
 		panic(err)
 	}
 
@@ -24,6 +27,7 @@ func convertVkCodeToScanCodeRetDEC(code types.VKCode) int {
 func Click(code types.VKCode) {
 	scancode := convertVkCodeToScanCodeRetDEC(code)
 	down(scancode)
+	time.Sleep(time.Millisecond * 50)
 	up(scancode)
 }
 
